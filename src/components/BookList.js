@@ -1,5 +1,5 @@
 import React from 'react';
-import Book from './Books';
+import Book from './Book';
 
 function BookList() {
   return (

@@ -9,7 +9,7 @@ function NavigationBar() {
         <h1 className="text-2xl font-semibold">Bookstore CMS</h1>
         <div className="flex">
           <Link to="/" className="flex-none w-14 h-14 text-xl font-semibold mx-10 ">Books</Link>
-          <Link to="/author" className=" flex-initial w-64 text-xl font-semibold mx-2">Author</Link>
+          <Link to="/categories" className=" flex-initial w-64 text-xl font-semibold mx-2">Categories</Link>
           <FaUser className="text-2xl font-semibold mx-2" />
         </div>
       </div>
