@@ -30,6 +30,7 @@ const initialState = [
     title: 'Dream of the Red Chamber',
   },
 ];
+
 export const removedBook = (payload) => (
   {
     type: BOOK_REMOVED,
