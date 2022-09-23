@@ -13,7 +13,7 @@ function Book({ title, author, id }) {
     <div className="my-5 border flex justify-between items-center">
       <div className="flex flex-col">
         <ul>
-          <button type="button"><li>Comments</li></button>
+          <button type="button"><li> Comments </li></button>
         </ul>
       </div>
       <h2 className="text-xl font-semibold">{title}</h2>
@@ -23,7 +23,7 @@ function Book({ title, author, id }) {
       </button>
       <div>
         <ul>
-          <button type="button"><li>Edit</li></button>
+          <button type="button"><li> Edit </li></button>
         </ul>
       </div>
     </div>
