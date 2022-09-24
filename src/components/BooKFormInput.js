@@ -1,61 +1,50 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
-import { addedBook } from '../redux/books/books';
+import { useDispatch } from 'react-redux/es/exports';
+import { v4 as uuidv4 } from 'uuid';
+import { ADDBOOKS } from '../redux/books/books';
 
-function BooKFormInput() {
+const BooKFormInput = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-
   const dispatch = useDispatch();
 
-  const addBookHandler = () => {
-    const newBook = {
-      id: uuid(),
+  const Addboooks = (element) => {
+    element.preventDefault();
+    const book = {
+      item_id: uuidv4(),
       title,
       author,
+      category: 'Action',
     };
-
-    dispatch(addedBook(newBook));
-
-    setTitle('');
-    setAuthor('');
+    if (title.length !== 0 && author.length !== 0) {
+      dispatch(ADDBOOKS(book));
+      setTitle('');
+      setAuthor('');
+    }
   };
   return (
-    <div className="my-5 border flex justify-between items-center">
-      <form>
-        <h2 className="text-xl font-semibold">Add new Book</h2>
-        <div className="flex flex-col">
-          <input
-            type="text"
-            className="text-xl font-semibold"
-            placeholder="Title Of Book"
-            required
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-          <input
-            type="text"
-            className="text-xl font-semibold"
-            placeholder="Author Of Book"
-            required
-            onChange={(e) => setAuthor(e.target.value)}
-            value={author}
-          />
-          {/* <select onChange={(e) => setAuthor(e.target.value)}
-          value={author} name="author" className="p-3 border mx-4 w-1/5">
-            <option value="" className="my-2">Author</option>
-            <option value="author1" className="my-2">Author 1</option>
-            <option value="author2" className="my-2">Author 2</option>
-            <option value="author3" className="my-2">Author 3</option>
-            <option value="author4" className="my-2">Author 4</option>
-            <option value="author5" className="my-2">Author 5</option>
-          </select> */}
-          <button onClick={addBookHandler} type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Add Book </button>
-        </div>
+    <div className="container mx-auto p-6 mb-10 shadow-xl border rounded">
+      <div className="" />
+      <h2 className="text-2xl font-semibold text-gray-400 my-3">ADD NEW BOOK</h2>
+      <form onSubmit={Addboooks} className="my-5 w-full">
+        <input
+          onChange={(element) => setTitle(element.target.value)}
+          value={title}
+          className="p-3 border rounded focus:outline-none border-sky-500 w-2/5"
+          placeholder="Add Book Title"
+          required
+        />
+        <input
+          onChange={(element) => setAuthor(element.target.value)}
+          value={author}
+          className="p-3 border mx-8 w-2/5 border-sky-500 rounded focus:outline-none"
+          placeholder="Add author"
+          required
+        />
+        <button type="submit" className="py-3 px-10 rounded border bg-sky-600 text-white hover:text-white"> Add Book</button>
       </form>
     </div>
   );
-}
+};
 
 export default BooKFormInput;
