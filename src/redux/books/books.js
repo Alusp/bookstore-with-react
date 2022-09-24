@@ -1,57 +1,56 @@
-import { v4 as uuidv4 } from 'uuid';
+/* eslint-disable no-param-reassign */
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const BOOK_REMOVED = 'bookStore/books/BOOK_REMOVED';
-const BOOK_ADDED = 'bookStore/books/BOOK_ADDED';
+const ADDBOOK = 'bookstore/books/ADDBOOK';
+const REMOVEBOOK = 'bookstore/books/REMOVEBOOK';
+const FETCHBOOK = 'bookstore-app/books/FETCH_BOOKS';
 
-const initialState = [
+const BOOKS_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/9iN7MQlwShRCf2YHHv7E/books';
 
-  {
-    id: uuidv4(),
-    title: 'Capital in the Twenty-First Century',
+export const ADDBOOKS = createAsyncThunk(
+  ADDBOOK,
+  async (book) => {
+    await axios.post(BOOKS_URL, book);
+    return {
+      book: [
+        book.item_id,
+        [{
+          author: book.author,
+          title: book.title,
+          category: book.category,
+        }],
+      ],
+    };
   },
-  {
-    id: uuidv4(),
-    title: 'The Lord of the Rings',
-  },
-  {
-    id: uuidv4(),
-    title: 'The Little Prince',
-  },
-  {
-    id: uuidv4(),
-    title: 'The Hobbit',
-  },
-  {
-    id: uuidv4(),
-    title: 'And Then There Were None',
-  },
-  {
-    id: uuidv4(),
-    title: 'Dream of the Red Chamber',
-  },
-];
-
-export const removedBook = (payload) => (
-  {
-    type: BOOK_REMOVED,
-    payload,
-  }
-);
-export const addedBook = (payload) => (
-  {
-    type: BOOK_ADDED,
-    payload,
-  }
 );
 
-const reducer = (state = initialState, action) => {
+export const REMOVEBOOKS = createAsyncThunk(REMOVEBOOK, async (id) => {
+  await axios.delete(`${BOOKS_URL}/${id}`);
+  return { id };
+});
+
+export const fetchBooks = createAsyncThunk(
+  FETCHBOOK,
+  async () => {
+    const { data } = await axios.get(BOOKS_URL);
+    return { books: Object.entries(data) };
+  },
+);
+
+const initState = [];
+
+const bookReducer = (state = initState, action) => {
   switch (action.type) {
-    case BOOK_REMOVED:
-      return state.filter((book) => book.id !== action.payload.id);
-    case BOOK_ADDED:
-      return [...state, action.payload];
+    case `${FETCHBOOK}/fulfilled`:
+      return action.payload.books;
+    case `${ADDBOOK}/fulfilled`:
+      return [...state, action.payload.book];
+    case `${REMOVEBOOK}/fulfilled`:
+      return state.filter((book) => book[0] !== action.payload.id);
     default:
       return state;
   }
 };
-export default reducer;
+
+export default bookReducer;
