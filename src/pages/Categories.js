@@ -1,22 +1,19 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { checkStatusAction } from '../redux/categories/categories';
+import { CHECK } from '../redux/categories/categories';
 
-function Categories() {
-  const showOutPut = useSelector((state) => state.checkStatus);
+const Catagories = () => {
+  const output = useSelector((state) => state.catagories);
   const dispatch = useDispatch();
 
-  const showCategorBtn = () => {
-    dispatch(checkStatusAction());
+  const catagButton = () => {
+    dispatch(CHECK());
   };
   return (
-    <div>
-      <button onClick={showCategorBtn} type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        check Status
-      </button>
-      <h2>{showOutPut}</h2>
+    <div className="">
+      <button className="" type="button" onClick={catagButton}>check status</button>
+      <h4>{output}</h4>
     </div>
   );
-}
+};
 
-export default Categories;
+export default Catagories;
