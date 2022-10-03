@@ -15,7 +15,7 @@
 
 ## Live Demo
 
-[**Comming Soon 🚀**]()
+[**Here 🚀**](https://alusine-jalloh-book-store.netlify.app/)
 
 
 ## Video Demonstration
