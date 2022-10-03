@@ -24,7 +24,7 @@
 
 ## Screenshots 
 
-![Desktop Design](./desktopScreenshot.png)
+![Desktop Design](./desktopScreen.png)
 
 
 ## Getting Started
