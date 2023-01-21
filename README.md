@@ -1,5 +1,3 @@
-
-# Project Name
 ## Book Store
 > **Book Store is a website that is used to Add, Display, Remove and Update Book, Its very much simillar to my Awesome Book Project built with different framework**
 
@@ -105,4 +103,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./LICENSE) licensed.
+This project is [MIT](./MIT.md) licensed.
