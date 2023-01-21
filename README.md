@@ -82,7 +82,7 @@ I have added the linters or tests in order to avoid anykind of typos and ensure 
 
 ## Author
 
-👤 **Author1**
+👤 **Alusine Jalloh**
 
 - GitHub: [@Alusp](https://github.com/Alusp)
 - LinkedIn: [@alusine-jalloh](https://www.linkedin.com/in/alusine-jalloh)
